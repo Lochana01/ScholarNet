@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('adminRegister') }}">
+                    <form method="POST" action="/adminRegister">
                         @csrf
 
                         <div class="row mb-3">
@@ -91,7 +91,7 @@
                                 
 
                                 <select name="user_type" id="user_type" class="form-control">
-                                    <option value="lecturer">Teacher</option>
+                                    <option value="teacher">Teacher</option>
                                     <option value="student">Student</option>
                                 </select>
 

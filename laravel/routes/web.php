@@ -32,9 +32,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/courses', function () {
-    return view('courses');
-});
 
 Route::get('/events', function () {
     return view('events');
@@ -44,9 +41,6 @@ Route::get('/pricing', function () {
     return view('pricing');
 });
 
-Route::get('/trainers', function () {
-    return view('trainers');
-});
 
 
 // Route::get('/main_lms', function () {
@@ -71,8 +65,8 @@ Route::get('/adminRegister', function () {
     return view('adminRegister');
 });
 
-Route::get('/adminRegister', [AdminUserController::class, 'showCreateUserForm'])->name('adminRegister');
-Route::post('/adminRegister', [AdminUserController::class, 'createUser'])->name('admin.create_user');
+// Route::get('/adminRegister', [AdminUserController::class, 'showCreateUserForm'])->name('adminRegister');
+Route::post('/adminRegister', [AdminUserController::class, 'createUser'])->name('adminRegister');
 // Route::get('/adminRegister', [RegisterController::class, 'showCreateUserForm'])->name('admin.create_user_form');
 // Route::post('/adminRegister', [RegisterController::class, 'createUser'])->name('admin.create_user');
 // Route::get('/adminRegister', 'AdminUserController@showCreateUserForm')->name('admin.create_user_form');

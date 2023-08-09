@@ -53,7 +53,7 @@
           </button>
         </div>
         <div>
-          <a class="navbar-brand brand-logo" href="#">
+          <a class="navbar-brand brand-logo" href="{{ route('admin_dashboard') }}">
             ScholarNet
             
           </a>
@@ -432,8 +432,8 @@
             </a>
             <div class="collapse" id="user_management">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Create teacher user</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Create student user</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Add new user</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Create student user</a></li> -->
               </ul>
             </div>
           </li>
