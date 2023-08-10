@@ -54,12 +54,13 @@ class LoginController extends Controller
         if (Auth::user()->is_admin) {
             return route('admin_dashboard');
         } else {
+            return route('main_lms');
             // Check if the user is a student
-            if (Auth::user()->user_type === 'student') {
-                return route('studentMain_lms');
-            } else {
-                return route('lecturerMain_lms');
-            }
+            // if (Auth::user()->user_type === 'student') {
+            //     return route('main_lms');
+            // } else {
+            //     return route('main_lms');
+            // }
         }
     }
 

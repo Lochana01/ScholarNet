@@ -31,24 +31,67 @@
 <body>
 
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
+    <div class="container d-flex">
 
-      <h1 class="logo me-auto"><a href="index.html">ScholarNet</a></h1>
+      <h1 class="logo"><a href="{{ url('/main_lms') }}">ScholarNet</a></h1>
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
+      <!-- <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
-          <li><a href="{{ url('/#') }}">Tab</a></li>
-          <li><a href="{{ url('/#') }}">Tab</a></li>
-
-          
+          <li><a href="{{ url('/#') }}">Courses</a></li>
+          <li><a href="{{ url('/#') }}">Events</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+      </nav> -->
 
       <!-- <a href="{{ url('/login')}}" class="get-started-btn">Get Started</a> -->
 
     </div>
+
+    <!-- <div class="container d-flex">
+      <nav id="navbar" class="navbar mt-3">
+        <ul>
+          <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
+          <li><a href="{{ url('/#') }}">Courses</a></li>
+          <li><a href="{{ url('/#') }}">Events</a></li>
+          <li class="ms-auto"><a href="{{ url('/#') }}">Username</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div> -->
+
+    <div class="container">
+      <nav id="navbar" class="navbar mt-3">
+        <ul class="justify-content-start">
+          <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
+          <li><a href="{{ url('/#') }}">Dashboard</a></li>
+          <li><a href="{{ url('/#') }}">Events</a></li>
+          <!-- <li><a href="{{ url('/#') }}">Courses</a></li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url('/#') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Courses
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">WDOS</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <ul class="justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ url('/#') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Username
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">View profile</a></li>
+              <li><a class="dropdown-item" href="#">Edit profile</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>  
   </header>
 
   @yield('content')

@@ -47,13 +47,9 @@ Route::get('/pricing', function () {
 //     return view('main_lms');
 // })->name('main_lms');
 
-Route::get('/lecturerMain_lms', function () {
-    return view('lecturerMain_lms');
-})->name('lecturerMain_lms');
-
-Route::get('/studentMain_lms', function () {
-    return view('studentMain_lms');
-})->name('studentMain_lms');
+Route::get('/main_lms', function () {
+    return view('main_lms');
+})->name('main_lms');
 
 
 
