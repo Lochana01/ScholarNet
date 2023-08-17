@@ -148,6 +148,29 @@ Route::middleware(['auth', 'admin'])->name('admin_')->prefix('admin')->group(fun
     Route::get('/admin_dashboard',[App\Http\Controllers\Admin\AdminController::class,'index'])->name('dashboard');
 });
 
+
+//AUthentication
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+  
+    Route::get('/admin_dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard');
+});
+
+Route::middleware(['auth', 'user-access:teacher'])->group(function () {
+  
+    Route::get('/main_lms', [HomeController::class, 'mainHome'])->name('main.lms');
+});
+
+Route::middleware(['auth', 'user-access:student'])->group(function () {
+  
+    Route::get('/main_lms', [HomeController::class, 'mainHome'])->name('main.lms');
+});
+
+
+
+
+
+
 // Route::get('/admin_dashboard', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin_dashboard')->middleware(['auth', 'admin']);
 
 // Route::middleware(['auth', 'admin'])->name('admin_')->prefix('admin')->group(function() {
