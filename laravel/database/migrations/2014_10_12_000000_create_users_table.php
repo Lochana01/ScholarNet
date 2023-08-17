@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->string('address')->nullable();
             $table->string('telephone_no')->nullable();
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->boolean('account_status')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

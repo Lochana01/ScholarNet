@@ -56,12 +56,12 @@
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="4873" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Students</p>
+            <p>Customers</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Courses</p>
+            <span data-purecounter-start="0" data-purecounter-end="120" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Partnerships</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
@@ -71,7 +71,7 @@
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Trainers</p>
+            <p>Services</p>
           </div>
 
         </div>

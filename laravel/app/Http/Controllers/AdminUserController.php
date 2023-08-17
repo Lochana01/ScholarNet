@@ -20,6 +20,7 @@ class AdminUserController extends Controller
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:8',
             'address' => 'required|string|max:255',
+            'telephone_no' => 'required|digits_between:10,10',
             'dob' => 'required|date|before_or_equal:today',
             'user_type' => 'required|in:teacher,student',
         ]);
@@ -29,6 +30,7 @@ class AdminUserController extends Controller
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
             'address' => $validatedData['address'],
+            'telephone_no' => $validatedData['telephone_no'],
             'dob' => $validatedData['dob'],
             'user_type' => $validatedData['user_type'],
         ]);

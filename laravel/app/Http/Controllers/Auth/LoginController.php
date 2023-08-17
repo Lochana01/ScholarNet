@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -54,7 +55,12 @@ class LoginController extends Controller
         if (Auth::user()->is_admin) {
             return route('admin_dashboard');
         } else {
-            return route('main_lms');
+            if (Auth::user()->account_status){
+                return route('main_lms');
+            } else {
+                return new Response('Forbidden', 403);
+            }
+            //return route('main_lms');
             // Check if the user is a student
             // if (Auth::user()->user_type === 'student') {
             //     return route('main_lms');

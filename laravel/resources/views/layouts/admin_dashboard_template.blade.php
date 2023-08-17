@@ -65,7 +65,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">User</span></h1>
+            <h1 class="welcome-text">Hello, <span class="text-black fw-bold">{{ Auth::user()->name }}</span></h1>
             <!-- <h3 class="welcome-sub-text">Your performance summary this week </h3> -->
           </li>
         </ul>
@@ -418,7 +418,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ url('/admin_dashboard') }}">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -426,76 +426,120 @@
           <li class="nav-item nav-category">User management</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#user_management" aria-expanded="false" aria-controls="user_management">
-              <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Create user</span>
+              <i class="menu-icon mdi mdi-account-plus"></i>
+              <span class="menu-title">User Account Operations</span>
               <i class="menu-arrow"></i> 
             </a>
             <div class="collapse" id="user_management">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Add new user</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_delete_user_account') }}">Delete user account</a></li>
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ url('/adminRegister') }}">Create student user</a></li> -->
               </ul>
             </div>
           </li>
-          <li class="nav-item nav-category">Heading 2</li>
+
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#test2" aria-expanded="false" aria-controls="test2">
-              <i class="menu-icon mdi mdi-card-text-outline"></i>
-              <span class="menu-title">Sub-heading 2</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#user_account_list" aria-expanded="false" aria-controls="user_account_list">
+              <i class="menu-icon mdi mdi-account-search"></i>
+              <span class="menu-title">User Account Overview</span>
+              <i class="menu-arrow"></i> 
+            </a>
+            <div class="collapse" id="user_account_list">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_account_overview') }}">View user profiles</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#user_enroll" aria-expanded="false" aria-controls="user_enroll">
+              <i class="menu-icon mdi mdi-account-multiple-plus"></i>
+              <span class="menu-title">User Course Enrollment</span>
+              <i class="menu-arrow"></i> 
+            </a>
+            <div class="collapse" id="user_enroll">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/#') }}">Enroll student to course</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/#') }}">Enroll teacher to course</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#user_permission" aria-expanded="false" aria-controls="user_permission">
+              <i class="menu-icon mdi mdi-account-convert"></i>
+              <span class="menu-title">User Account Permission</span>
+              <i class="menu-arrow"></i> 
+            </a>
+            <div class="collapse" id="user_permission">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/#') }}">Change user permissions</a></li>
+              </ul>
+            </div>
+          </li> -->
+          <li class="nav-item nav-category">Course management</li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#course_management" aria-expanded="false" aria-controls="course_management">
+              <i class="menu-icon mdi mdi-book-multiple"></i>
+              <span class="menu-title">Course Operations</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="test2">
+            <div class="collapse" id="course_management">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="#">Dropdown 4</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/admin_create_course') }}">Create new course</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/admin_manage_course') }}">Manage course</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#test3" aria-expanded="false" aria-controls="test3">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Sub-heading 3</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#course_overview" aria-expanded="false" aria-controls="course_overview">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title">Course Overview</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="test3">
+            <div class="collapse" id="course_overview">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Dropdown 5</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_course_overview') }}">View courses</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#course_settings" aria-expanded="false" aria-controls="course_settings">
+              <i class="menu-icon mdi mdi-book-open"></i>
+              <span class="menu-title">Course Settings</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="course_settings">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/#') }}">Update course information</a></li>
+              </ul>
+            </div>
+          </li> -->
+          
+          <li class="nav-item nav-category">Module Management</li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#module_management" aria-expanded="false" aria-controls="module_management">
+              <i class="menu-icon mdi mdi-note"></i>
+              <span class="menu-title">Module Operations</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="module_management">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_create_module') }}">Create new module</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_manage_module') }}">Manage module</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#test4" aria-expanded="false" aria-controls="test4">
+            <a class="nav-link" data-bs-toggle="collapse" href="#module_overview" aria-expanded="false" aria-controls="module_overview">
               <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">Sub-heading 4</span>
+              <span class="menu-title">Module Overview</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="test4">
+            <div class="collapse" id="module_overview">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Dropdown 6</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#test5" aria-expanded="false" aria-controls="test5">
-              <i class="menu-icon mdi mdi-layers-outline"></i>
-              <span class="menu-title">Sub-heading 5</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="test5">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Dropdown 7</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item nav-category">Heading 3</li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#test6" aria-expanded="false" aria-controls="test6">
-              <i class="menu-icon mdi mdi-account-circle-outline"></i>
-              <span class="menu-title">Sub-heading 6</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="test6">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Dropdown 8</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin_module_overview') }}">View modules</a></li>
               </ul>
             </div>
           </li>
@@ -1146,10 +1190,10 @@
         
 
         <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <!-- <div class="d-sm-flex justify-content-center justify-content-sm-between">
             
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All rights reserved.</span>
-          </div>
+          </div> -->
         </footer>
       </div>
     </div>
