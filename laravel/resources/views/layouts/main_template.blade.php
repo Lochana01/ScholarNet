@@ -65,11 +65,11 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>ScholarNet</h3>
             <p>
-              A69 Bradu  Street <br>
-              New Balagolla, BinGe 535022<br>
+              No.69 Tickle Street <br>
+              New Highway, Colombo<br>
               Sri Lanka <br><br>
-              <strong>Phone:</strong> +94 76 816 6198<br>
-              <strong>Email:</strong> Bradu@ecol.com<br>
+              <strong>Phone:</strong> +94 70 420 6666<br>
+              <strong>Email:</strong> scholar@gamil.com<br>
             </p>
           </div>
 
@@ -110,7 +110,7 @@
           &copy; Copyright <strong><span>ScholarNet</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          Designed by Pradu and team
+          <!-- Designed by Pradu and team -->
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">

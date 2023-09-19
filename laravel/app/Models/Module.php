@@ -20,4 +20,10 @@ class Module extends Model
         'module_prerequisites',
         'module_status'
     ];
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
 }

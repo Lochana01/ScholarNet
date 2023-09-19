@@ -65,12 +65,25 @@ class CourseController extends Controller
         return view('admin_manage_course', compact('course', 'status'));
     }
 
+    public function showUserForm(Course $course)
+    {
+        $course = Course::all();
+
+        return view('adminRegister', compact('course'));
+    }
+
+    public function showUserEditForm(Course $course)
+    {
+        $courses = Course::all();
+
+        return view('admin_edit_user', compact('courses'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Course $course)
     {
-        //$course = Course::findOrFail($id);
         return view('admin_edit_course', compact('course'));
     }
 
@@ -79,24 +92,7 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
-
-        //$course = Course::findOrFail($id);
-
-        // $validatedData = $request->validate([
-            // 'course_title' => 'required',
-            // 'course_description' => 'required',
-            // 'course_price' => 'required',
-            // 'course_status' => 'required',
-        // ]);
-
-        // $course->course_title = $request->course_title;
-        // $course->course_description = $request->course_description;
-        // $course->course_price = $request->course_price;
-        // $course->course_status = $request->course_status;
         
-        // $course->save();
-
         $course->update([
             'course_title' => $request->course_title,
             'course_description' => $request->course_description,

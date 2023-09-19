@@ -12,6 +12,7 @@
             <th>Email</th>
             
             <th>User Type</th>
+            <th>Course ID</th>
             <th>Date of Birth</th>
             <th>Address</th>
             <th>Telephone No</th>
@@ -26,6 +27,7 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td style="text-transform: capitalize;">{{ $user->user_type }}</td>
+            <td>{{ $user->course_id }}</td>
             <td>{{ $user->dob }}</td>
             <td>{{ $user->address }}</td>
             <td>{{ $user->telephone_no }}</td>

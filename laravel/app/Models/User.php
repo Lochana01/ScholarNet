@@ -41,6 +41,8 @@ class User extends Authenticatable
         'dob', 
         'address', 
         'telephone_no',
+        'batch_code',
+       // 'course_id',
     ];
 
     /**
@@ -62,4 +64,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'users_courses', 'user_id', 'course_id');
+    }
 }

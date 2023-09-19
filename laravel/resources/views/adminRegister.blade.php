@@ -42,15 +42,8 @@
 
                         <div class="row mb-3">
                             <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
-
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
-
-                                <!-- @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror -->
                             </div>
                         </div>
 
@@ -83,13 +76,8 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Usertype') }}</label>
-
+                            <label for="user_type" class="col-md-4 col-form-label text-md-end">{{ __('Usertype') }}</label>
                             <div class="col-md-6">
-                                <!-- <input id="user_type" type="text" class="form-control @error('user_type') is-invalid @enderror" name="user_type" value="{{ old('user_type') }}" required autocomplete="user_type" autofocus> -->
-
-                                
-
                                 <select name="user_type" id="user_type" class="form-control">
                                     <option value="teacher">Teacher</option>
                                     <option value="student">Student</option>
@@ -102,6 +90,34 @@
                                 @enderror
                             </div>
                         </div>
+
+                        
+
+                        <div class="row mb-3">
+                            <label for="course_id" class="col-md-4 col-form-label text-md-end">{{ __('Courses') }}</label>
+                            <div class="col-md-6">
+                                <select name="course_id[]" id="course_id" class="form-control" multiple size="5" multiple required>
+                                    @foreach ($course as $course)
+                                        <option value="{{ $course->id }}">{{ $course->course_title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            @error('course_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="batch_code" class="col-md-4 col-form-label text-md-end">{{ __('Batch code') }}</label>
+                            <div class="col-md-6">
+                                <input id="batch_code" type="text" class="form-control" name="batch_code" value="{{ old('batch_code') }}" required autocomplete="batch_code" autofocus>
+                            </div>
+                        </div>
+
+                        
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

@@ -17,4 +17,16 @@ class Course extends Model
         'course_description',
         'course_price'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_courses', 'course_id', 'user_id');
+    }
+
+
+    public function modules()
+    {
+        return $this->hasMany(Module::class);
+    }
+
 }

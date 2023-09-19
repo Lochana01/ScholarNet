@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Discussion extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,10 @@ class Feedback extends Model
 
     protected $fillable = [
         // 'user_id',
-        'name',
-        'email',
-        'telephone_no',
-        'feedback_type',
-        'feedback'
+        'discussion_title',
+        'discussion_content',
+        'discussion_comments',
+        'user_name',
+        'user_type'
     ];
 }

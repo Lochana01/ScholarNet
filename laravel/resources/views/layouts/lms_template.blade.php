@@ -25,69 +25,81 @@
   <link href="{{ asset('assets/main/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <link href="{{ asset('assets/main/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/lms/css/event.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
 
-  <header id="header" class="fixed-top">
+  <header id="header" class="mb-5">
     <div class="container d-flex">
 
       <h1 class="logo"><a href="{{ url('/main_lms') }}">ScholarNet</a></h1>
 
-      <!-- <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
-          <li><a href="{{ url('/#') }}">Courses</a></li>
-          <li><a href="{{ url('/#') }}">Events</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav> -->
-
-      <!-- <a href="{{ url('/login')}}" class="get-started-btn">Get Started</a> -->
 
     </div>
-
-    <!-- <div class="container d-flex">
-      <nav id="navbar" class="navbar mt-3">
-        <ul>
-          <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
-          <li><a href="{{ url('/#') }}">Courses</a></li>
-          <li><a href="{{ url('/#') }}">Events</a></li>
-          <li class="ms-auto"><a href="{{ url('/#') }}">Username</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-    </div> -->
 
     <div class="container">
       <nav id="navbar" class="navbar mt-3">
         <ul class="justify-content-start">
           <li><a class="#" href="{{ url('/main_lms') }}">Home</a></li>
           <li><a href="{{ url('/#') }}">Dashboard</a></li>
-          <li><a href="{{ url('/#') }}">Events</a></li>
+          <li><a href="/lms_event">Events</a></li>
           <!-- <li><a href="{{ url('/#') }}">Courses</a></li> -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="{{ url('/#') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Courses
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">WDOS</a></li>
-            </ul>
+              <a class="nav-link dropdown-toggle" href="{{ url('/#') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Modules
+              </a>
+              <ul class="dropdown-menu">
+                  @php
+                      $moduleController = app('App\Http\Controllers\ModuleController');
+                      $moduleTitles = $moduleController->retrieveModuleTitlesForUser();
+                  @endphp
+
+                  @if (!empty($moduleTitles))
+                      @foreach ($moduleTitles as $moduleTitle)   
+                          <a href="{{ route('module.show', ['moduleTitle' => $moduleTitle]) }}">
+                              <li class="nav-link fw-bold text-center">{{ $moduleTitle }}</li>
+                          </a>  
+                      @endforeach
+                  @else
+                      <li class="nav-link">No Modules Available</li>
+                  @endif
+              </ul>
           </li>
+          <li><a href="{{ url('/lms_discussion_view') }}">Discussions</a></li>
+
+
           
         </ul>
         <ul class="justify-content-end">
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="{{ url('/#') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Username
+            {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">View profile</a></li>
               <li><a class="dropdown-item" href="#">Edit profile</a></li>
               <li><a class="dropdown-item" href="#">Logout</a></li>
             </ul>
-          </li>
+          </li> -->
+          <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -105,18 +117,20 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>ScholarNet</h3>
             <p>
-              A69 Bradu  Street <br>
-              New Balagolla, BinGe 535022<br>
+              No.69 Tickle Street <br>
+              New Highway, Colombo<br>
               Sri Lanka <br><br>
-              <strong>Phone:</strong> +94 76 816 6198<br>
-              <strong>Email:</strong> Bradu@ecol.com<br>
+              <strong>Phone:</strong> +94 70 420 6666<br>
+              <strong>Email:</strong> scholar@gamil.com<br>
             </p>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/main_lms">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/lms_discussion">Discussion</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/lms_feedback">Feedback</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
@@ -124,24 +138,6 @@
             </ul>
           </div>
 
-          <!-- <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Sign up for our newsletter now and get access to a wealth of information. Join our active learning community and let's set off on a road of continual improvement together!</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div> -->
 
         </div>
       </div>
@@ -154,7 +150,7 @@
           &copy; Copyright <strong><span>ScholarNet</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          Designed by Pradu and team
+          <!-- Designed by Pradu and team -->
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">

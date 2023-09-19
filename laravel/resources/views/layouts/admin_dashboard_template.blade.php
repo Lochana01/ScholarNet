@@ -452,7 +452,7 @@
             </div>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#user_enroll" aria-expanded="false" aria-controls="user_enroll">
               <i class="menu-icon mdi mdi-account-multiple-plus"></i>
               <span class="menu-title">User Course Enrollment</span>
@@ -464,7 +464,7 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/#') }}">Enroll teacher to course</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#user_permission" aria-expanded="false" aria-controls="user_permission">

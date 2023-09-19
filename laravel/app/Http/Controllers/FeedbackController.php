@@ -33,13 +33,17 @@ class FeedbackController extends Controller
         {
             $feedback = new Feedback;
             
-            
+            $feedback->name = $request->name;
+            $feedback->email = $request->email;
+            $feedback->telephone_no=$request->telephone_no;
+            $feedback->feedback_type=$request->feedback_type;
+            $feedback->feedback=$request->feedback;
             
             $feedback->save();
 
-            return redirect('/#')->with('status', 'success');
+            return redirect('/lms_feedback')->with('status', 'success');
         }   catch (Exception $e) {
-            return redirect('/#')->with('status', 'error');
+            return redirect('/lms_feedback')->with('status', 'error');
         }
         
     }

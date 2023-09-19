@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
+use App\Models\User;
+use App\Models\Course;
+use App\Models\File;
 use App\Http\Requests\StoreModuleRequest;
 use App\Http\Requests\UpdateModuleRequest;
+use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\DB;
 
 class ModuleController extends Controller
 {
@@ -103,11 +108,55 @@ class ModuleController extends Controller
         $module = Module::find($id);
 
         if ($module) {
-            //$module->update(['module_status' => false]);
             $module->module_status = false;
             $module->save();
         }
 
         return redirect()->route('admin_manage_module')->with('status', 'success');
     }
+
+    
+
+    public function retrieveModuleTitlesForUser()
+    {
+        $user = Auth::user();
+
+        // Retrieve the course IDs associated with the user from the users_courses table
+        $userCourseIds = DB::table('users_courses')
+            ->where('user_id', $user->id)
+            ->pluck('course_id')
+            ->toArray();
+
+        if (!empty($userCourseIds)) {
+            // Retrieve the associated module titles based on the user's course IDs
+            $moduleTitles = Module::whereIn('course_id', $userCourseIds)->pluck('module_title')->toArray();
+            return $moduleTitles;
+        }
+
+        return []; // Return an empty array or an appropriate default value if no modules are found
+    }
+
+    public function showFileUploadView()
+    {
+        $modules = Module::all(); // Retrieve all modules, adjust this query as needed
+
+        return view('file_upload_lms', ['modules' => $modules]);
+    }
+
+    public function showModuleInfo($moduleTitle)
+    {
+        // Find the module by title or return a 404 response if not found
+        $module = Module::where('module_title', $moduleTitle)->firstOrFail();
+    
+        // Fetch module-specific content and files
+        $files = File::where('module_id', $module->id)->get();
+    
+        return view('lms_module', compact('module', 'files'));
+    }
+    
+
+   
+
+
+
 }
